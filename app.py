@@ -98,7 +98,7 @@ def get_signal(score):
         return "Venta fuerte"
 
 # Interfaz Streamlit
-st.title("📈 Screener técnico de acciones")
+st.title("📈 ALPHA SCREEN - Screener técnico de acciones")
 ticker_input = st.text_input("Ingresá los tickers separados por coma:", "AAPL, MSFT, GOOGL, NVDA")
 tickers = [t.strip().upper() for t in ticker_input.split(",") if t.strip()]
 
