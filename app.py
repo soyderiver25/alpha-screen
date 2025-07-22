@@ -152,7 +152,3 @@ def analizar_tickers(tickers, titulo):
 
 if st.button("🔍 Ejecutar análisis manual") and tickers:
     analizar_tickers(tickers, "📊 Resultados de tu análisis manual")
-
-if favoritos:
-    analizar_tickers(favoritos, "⭐ Seguimiento de acciones favoritas")
-
