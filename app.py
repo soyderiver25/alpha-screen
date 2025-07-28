@@ -21,7 +21,6 @@ def guardar_favoritos(favs):
     with open(FAV_FILE, "w") as f:
         json.dump(favs, f)
 
-@st.cache_data(show_spinner=False)
 def descargar_datos(ticker):
     try:
         df = yf.download(ticker, period="6mo", interval="1d", auto_adjust=False, progress=False)
