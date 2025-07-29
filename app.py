@@ -67,9 +67,9 @@ def compute_indicators(ticker):
         "Boll_Dist": round(bb_dist, 2),
         "OBV": round(obv, 2),
         "ADX": round(adx, 2),
-        "EMA_Cross": ema_cross
+        "EMA_Cross": ema_cross,
         "MFI": round(mfi, 2),
-        "CCI": round(cci, 2),
+        "CCI": round(cci, 2)
     }
 
     score = get_score(indicators)
