@@ -85,11 +85,11 @@ def get_score(ind):
     return round(score, 2)
 
 def get_signal(score):
-    if score >= 0.75:
+    if score >= 0.70:
         return "Compra fuerte"
-    elif score >= 0.55:
+    elif score >= 0.50:
         return "Compra débil"
-    elif score >= 0.4:
+    elif score >= 0.3:
         return "Neutral"
     elif score >= 0.15:
         return "Venta débil"
