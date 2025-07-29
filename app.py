@@ -76,12 +76,12 @@ def compute_indicators(ticker):
 def get_score(ind):
     score = 0
     score += 0.33 if ind["RSI"] < 30 else 0
-    score += 0.22 if ind["MACD_diff"] > 0 else 0
+    score += 0.23 if ind["MACD_diff"] > 0 else 0
     score += 0.20 if ind["ADX"] > 25 else 0
     score += 0.02 if ind["OBV"] > 0 else 0
     score += 0.10 if ind["EMA_Cross"] == 1 else 0
     score += 0.05 if ind["Boll_Dist"] < 0 else 0
-    score += 0.08 if ind["Stoch"] < 20 else 0
+    score += 0.07 if ind["Stoch"] < 20 else 0
     return round(score, 2)
 
 def get_signal(score):
