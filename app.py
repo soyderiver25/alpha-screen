@@ -5,7 +5,6 @@ from ta.momentum import RSIIndicator, StochasticOscillator
 from ta.trend import MACD, EMAIndicator, ADXIndicator
 from ta.volatility import BollingerBands
 from ta.volume import OnBalanceVolumeIndicator
-from ta.momentum import MoneyFlowIndexIndicator, CCIIndicator
 import streamlit as st
 import json
 import os
@@ -55,8 +54,6 @@ def compute_indicators(ticker):
     ema20 = EMAIndicator(close, window=20).ema_indicator().iloc[-1]
     ema50 = EMAIndicator(close, window=50).ema_indicator().iloc[-1]
     ema_cross = 1 if ema20 > ema50 else 0
-    mfi = MoneyFlowIndexIndicator(high, low, close, volume).money_flow_index().iloc[-1]
-    cci = CCIIndicator(high, low, close).cci().iloc[-1]
 
     indicators = {
         "Ticker": ticker,
@@ -67,9 +64,7 @@ def compute_indicators(ticker):
         "Boll_Dist": round(bb_dist, 2),
         "OBV": round(obv, 2),
         "ADX": round(adx, 2),
-        "EMA_Cross": ema_cross,
-        "MFI": round(mfi, 2),
-        "CCI": round(cci, 2)
+        "EMA_Cross": ema_cross
     }
 
     score = get_score(indicators)
@@ -80,15 +75,13 @@ def compute_indicators(ticker):
 
 def get_score(ind):
     score = 0
-    score += 0.29 if ind["RSI"] < 30 else 0
-    score += 0.20 if ind["MACD_diff"] > 0 else 0
-    score += 0.17 if ind["ADX"] > 25 else 0
+    score += 0.33 if ind["RSI"] < 30 else 0
+    score += 0.23 if ind["MACD_diff"] > 0 else 0
+    score += 0.20 if ind["ADX"] > 25 else 0
     score += 0.02 if ind["OBV"] > 0 else 0
-    score += 0.09 if ind["EMA_Cross"] == 1 else 0
-    score += 0.04 if ind["Boll_Dist"] < 0 else 0
-    score += 0.06 if ind["Stoch"] < 20 else 0
-    score += 0.07 if ind["MFI"] < 20 else 0
-    score += 0.06 if ind["CCI"] < -100 else 0
+    score += 0.10 if ind["EMA_Cross"] == 1 else 0
+    score += 0.05 if ind["Boll_Dist"] < 0 else 0
+    score += 0.07 if ind["Stoch"] < 20 else 0
     return round(score, 2)
 
 def get_signal(score):
