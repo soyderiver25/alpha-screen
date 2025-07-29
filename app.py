@@ -91,7 +91,7 @@ def get_signal(score):
         return "Compra débil"
     elif score >= 0.3:
         return "Neutral"
-    elif score >= 0.15:
+    elif score >= 0.18:
         return "Venta débil"
     else:
         return "Venta fuerte"
